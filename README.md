@@ -5,7 +5,7 @@ Pi extension that adds a `web_search` tool backed by a self-hosted [SearXNG](htt
 ## Install
 
 ```bash
-pi install @oresk/pi-searxng
+pi install npm:@oresk/pi-searxng
 ```
 
 ## Configuration
@@ -31,7 +31,14 @@ Edit it to configure your SearXNG instance and search preferences:
   "maxResults": 10,
 
   // SafeSearch level: "off", "moderate", or "strict".
-  "safesearch": "off"
+  "safesearch": "off",
+
+  // ── mTLS (mutual TLS) ────────────────────────────────────────────────
+  // Set these paths to authenticate with a SearXNG instance that requires
+  // client certificates. Override with SEARXNG_CERT, SEARXNG_KEY, SEARXNG_CA.
+  "mtlsCert": "/path/to/client-cert.pem",
+  "mtlsKey":  "/path/to/client-key.pem",
+  "mtlsCa":   "/path/to/ca-cert.pem"
 }
 ```
 
@@ -42,6 +49,28 @@ export SEARXNG_URL="https://search.yourdomain.com"
 ```
 
 If neither is set, it defaults to `http://localhost:8080`.
+
+### mTLS (Mutual TLS)
+
+For SearXNG instances that require client certificate authentication, configure mTLS via environment variables or config:
+
+```bash
+export SEARXNG_CERT="/path/to/client-cert.pem"
+export SEARXNG_KEY="/path/to/client-key.pem"
+export SEARXNG_CA="/path/to/ca-cert.pem"
+```
+
+Or in the config file:
+
+```jsonc
+{
+  "mtlsCert": "/path/to/client-cert.pem",
+  "mtlsKey":  "/path/to/client-key.pem",
+  "mtlsCa":   "/path/to/ca-cert.pem"
+}
+```
+
+Environment variables take priority over config values. `mtlsCert` and `mtlsKey` are required for mTLS to activate; `mtlsCa` is optional (use when the server uses a self-signed or private CA certificate).
 
 ### Setting up SearXNG
 
@@ -60,7 +89,7 @@ See the [SearXNG docs](https://docs.searxng.org/admin/installation-docker.html) 
 The tool supports all SearXNG engine categories:
 
 | Category | Engines |
-|----------|---------|
+| ---------- | --------- |
 | `general` / `web` | Google, Brave, DuckDuckGo, Startpage |
 | `news` | Bing News, Google News, Reuters, Yahoo News |
 | `it` | StackOverflow, MDN, GitHub, PyPI, Docker Hub, Arch Wiki |

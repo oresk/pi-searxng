@@ -1,46 +1,52 @@
 {
-  "name": "@oresk/pi-searxng",
-  "version": "0.2.1",
-  "description": "Pi extension for web search via a self-hosted SearXNG instance",
-  "type": "module",
-  "keywords": [
-    "pi-package",
-    "searxng",
-    "search",
-    "web-search"
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oresk/pi-searxng.git"
-  },
-  "homepage": "https://github.com/oresk/pi-searxng",
-  "bugs": {
-    "url": "https://github.com/oresk/pi-searxng/issues"
-  },
-  "pi": {
-    "extensions": [
-      "./searxng.ts"
-    ]
-  },
-  "peerDependencies": {
-    "@earendil-works/pi-coding-agent": "*"
-  },
-  "files": [
-    "searxng.ts",
-    "package.json",
-    "README.md",
-    "LICENSE"
-  ],
-  "engines": {
-    "node": ">=18"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependenciesMeta": {
-    "@earendil-works/pi-coding-agent": {
-      "optional": false
-    }
-  }
+	"name": "@heliocastro/pi-searxng",
+	"version": "0.4.0",
+	"description": "Pi extension for web search via a self-hosted SearXNG instance",
+	"type": "module",
+	"keywords": [
+		"pi-package",
+		"searxng",
+		"search",
+		"web-search"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/heliocastro/pi-searxng.git"
+	},
+	"homepage": "https://github.com/heliocastro/pi-searxng",
+	"bugs": {
+		"url": "https://github.com/heliocastro/pi-searxng/issues"
+	},
+	"pi": {
+		"extensions": [
+			"./searxng.ts"
+		]
+	},
+	"peerDependencies": {
+		"@earendil-works/pi-coding-agent": "^0.80.7",
+		"@earendil-works/pi-tui": "*",
+		"typebox": "*"
+	},
+	"files": [
+		"searxng.ts",
+		"package.json",
+		"README.md",
+		"LICENSE"
+	],
+	"engines": {
+		"node": ">=22"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"peerDependenciesMeta": {
+		"@earendil-works/pi-coding-agent": {
+			"optional": false
+		}
+	},
+	"dependencies": {
+		"@types/node": "^26.1.1",
+		"undici": "^8.5.0"
+	}
 }
